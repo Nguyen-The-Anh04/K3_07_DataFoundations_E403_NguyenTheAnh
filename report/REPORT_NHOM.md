@@ -4,7 +4,7 @@
 **Thành viên:** Trần Quốc Hùng, Nguyễn Đức Sơn, Nguyễn Thế Anh  
 **Ngày:** 03/08/2026
 
-> Nhóm sử dụng chung corpus RMIT trong `data/k3_tuition/` và cùng 5 benchmark queries trong `data/k3_tuition/benchmark_queries.csv`. Các báo cáo cá nhân được đối chiếu gồm `REPORT_CANHAN.md` của Trần Quốc Hùng, `REPORT_CANHAN_NGUYEN_DUC_SON.md` và `REPORT_CANHAN_NGUYEN_THE_ANH.md`. Kết quả retrieval của từng thành viên được ghi kèm embedding provider.
+> Nhóm sử dụng chung corpus RMIT trong `data/k3_tuition/` và cùng 5 benchmark queries trong `data/k3_tuition/benchmark_queries.csv`. Báo cáo này tổng hợp kết quả strategy/retrieval do các thành viên cung cấp; branch cá nhân này chỉ nộp báo cáo cá nhân của Trần Quốc Hùng và báo cáo nhóm.
 
 **Tổng điểm phần nhóm: 40** = Lựa chọn tài liệu (10) + Thiết kế chiến lược (15) + Chất lượng truy xuất (10) + Thuyết trình (5).
 
