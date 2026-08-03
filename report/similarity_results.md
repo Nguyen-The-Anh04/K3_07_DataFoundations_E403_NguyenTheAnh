@@ -1,12 +1,12 @@
 # Kết quả dự đoán độ tương tự
 
 - Backend: `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
-- Quy tắc: score >= 0.50 là **cao**.
+- Ngưỡng thực nghiệm: `0.50`
 
-| Cặp | Dự đoán | Điểm thực tế | Phân loại thực tế | Đúng? |
+| Cặp | Dự đoán | Điểm thực tế | Phân loại | Đúng? |
 |---:|---|---:|---|---|
-| 1 | cao | 0.758805 | cao | Có |
-| 2 | cao | 0.628423 | cao | Có |
-| 3 | thấp | 0.141858 | thấp | Có |
-| 4 | cao | 0.617916 | cao | Có |
-| 5 | thấp | 0.221661 | thấp | Có |
+| 1 | Cao | 0.758805 | Cao | Có |
+| 2 | Cao | 0.790770 | Cao | Có |
+| 3 | Thấp | 0.141858 | Thấp | Có |
+| 4 | Cao | 0.650318 | Cao | Có |
+| 5 | Thấp | 0.345593 | Thấp | Có |
