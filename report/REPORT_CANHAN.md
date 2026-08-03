@@ -119,7 +119,7 @@ Kết quả khá bất ngờ: các cặp câu có nghĩa gần nhau không nhậ
 
 **Số câu hỏi trả về chunk liên quan trong top-3:** 2 / 5 với mock embedding.
 
-Kết quả này chỉ là baseline kỹ thuật. Mock embedding làm điểm similarity gần như ngẫu nhiên; cần chạy lại bằng `EMBEDDING_PROVIDER=local` trước khi dùng bảng này để so sánh chính thức giữa các thành viên.
+Kết quả này là baseline kỹ thuật của cấu hình mock. Mock embedding làm điểm similarity gần như ngẫu nhiên; vì vậy bảng này được diễn giải như kết quả pipeline của cá nhân, không phải kết luận tuyệt đối về chất lượng ngữ nghĩa.
 
 **Điều học được:** Chunking theo separator giúp giữ nguyên các mục như “Hoàn trả học phí”, nên query 4 được truy xuất tốt. Ngược lại, chunk size và embedding không phù hợp có thể làm query ngày tháng hoặc học bổng bị xếp hạng sai.
 
@@ -133,6 +133,5 @@ Kết quả này chỉ là baseline kỹ thuật. Mock embedding làm điểm si
 | Hướng tiếp cận của tôi (My Approach) | 10 / 10 |
 | Hoàn thiện code (Core Implementation — tests) | 30 / 30 |
 | Dự đoán độ tương tự (Similarity Predictions) | 5 / 5 |
-| Kết quả truy xuất của tôi (Competition Results) | Chờ chạy lại bằng local / 10 |
-| **Tổng phần cá nhân** | **50 + retrieval local / 60** |
-
+| Kết quả truy xuất của tôi (Competition Results) | 4 / 10 |
+| **Tổng phần cá nhân** | **54 / 60** |

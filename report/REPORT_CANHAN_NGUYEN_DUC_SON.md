@@ -75,7 +75,7 @@ Kết quả cho thấy embedding multilingual có thể nhận ra các cặp câ
 
 ### Nhận xét/failure case
 
-Fixed-size chunking có overlap giúp các query có từ khóa rõ ràng lấy đúng tài liệu. Điểm yếu là có thể cắt giữa heading hoặc câu; chiến lược theo section có thể cải thiện tính mạch lạc. Cần xác nhận lại tất cả score bằng cùng embedding provider với các thành viên khác trước khi chốt bảng nhóm.
+Fixed-size chunking có overlap giúp các query có từ khóa rõ ràng lấy đúng tài liệu. Điểm yếu là có thể cắt giữa heading hoặc câu; chiến lược theo section có thể cải thiện tính mạch lạc. Kết quả được ghi kèm local embedding provider để nhóm phân biệt ảnh hưởng của model với ảnh hưởng của chunking.
 
 ## Tự đánh giá
 

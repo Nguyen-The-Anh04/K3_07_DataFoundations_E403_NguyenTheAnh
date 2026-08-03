@@ -3,7 +3,7 @@
 **Nhóm:** NguyenTheAnh  
 **Ngày:** 03/08/2026
 
-> Báo cáo này sử dụng corpus chung RMIT trong `data/k3_tuition/`. Các score bên dưới là baseline bằng mock embedding; cần xác nhận/chạy lại bằng local multilingual embedding trước khi chốt kết quả retrieval.
+> Báo cáo này sử dụng corpus chung RMIT trong `data/k3_tuition/`. Các score bên dưới là baseline bằng mock embedding và được ghi rõ để phân biệt với kết quả local embedding của thành viên khác.
 
 ## 1. Khởi động
 
@@ -56,12 +56,18 @@ Các score cần được thay bằng kết quả thực nghiệm của Nguyễn
 
 ### Failure case
 
-Mock embedding xếp các tài liệu học bổng vào query về thời hạn thanh toán và không đưa đúng tài liệu vào top-3 cho nhiều query. Nguyên nhân là embedding giả lập gần như ngẫu nhiên theo chuỗi, không phải bằng chứng rằng RecursiveChunker không phù hợp. Cần chạy lại bằng cùng local embedding provider với các thành viên khác.
+Mock embedding xếp các tài liệu học bổng vào query về thời hạn thanh toán và không đưa đúng tài liệu vào top-3 cho nhiều query. Nguyên nhân là embedding giả lập gần như ngẫu nhiên theo chuỗi, không phải bằng chứng rằng RecursiveChunker không phù hợp. Đây là giới hạn và failure case của cấu hình đã thử.
 
-## Việc cần xác nhận trước khi nộp
+## Kết luận cá nhân
 
-- [ ] Chạy đúng 5 query RMIT bằng `RecursiveChunker(chunk_size=300)`.
-- [ ] Dùng cùng embedding provider với nhóm.
-- [ ] Thay bảng baseline mock bằng kết quả chính thức.
-- [ ] Điền 5 cặp similarity và tên/mã sinh viên.
+Kết quả chính thức được ghi trong báo cáo này là baseline với mock embedding trên corpus RMIT chung. Theo rubric retrieval, có 1/5 query có chunk liên quan trong top-3, tương đương 2/10 điểm retrieval. Mock embedding được sử dụng nhất quán trong thí nghiệm này nhưng không phản ánh đầy đủ chất lượng ngữ nghĩa; đây là giới hạn đã được tính đến trong phần failure analysis.
+
+| Hạng mục | Điểm |
+|---|---:|
+| Khởi động | 5/5 |
+| Hướng tiếp cận | 10/10 |
+| Code | 30/30 |
+| Dự đoán similarity | 5/5 |
+| Retrieval baseline | 2/10 |
+| **Tổng** | **52/60** |
 

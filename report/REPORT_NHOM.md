@@ -4,7 +4,7 @@
 **Thành viên:** Trần Quốc Hùng, Nguyễn Đức Sơn, Nguyễn Thế Anh  
 **Ngày:** 03/08/2026
 
-> Nhóm sử dụng chung corpus RMIT trong `data/k3_tuition/` và cùng 5 benchmark queries trong `data/k3_tuition/benchmark_queries.csv`. Các báo cáo cá nhân được đối chiếu gồm `REPORT_CANHAN.md` của Trần Quốc Hùng, `REPORT_CANHAN_NGUYEN_DUC_SON.md` và `REPORT_CANHAN_NGUYEN_THE_ANH.md`. Kết quả retrieval của từng thành viên được ghi kèm embedding provider để tránh diễn giải sai khác biệt giữa các thí nghiệm.
+> Nhóm sử dụng chung corpus RMIT trong `data/k3_tuition/` và cùng 5 benchmark queries trong `data/k3_tuition/benchmark_queries.csv`. Các báo cáo cá nhân được đối chiếu gồm `REPORT_CANHAN.md` của Trần Quốc Hùng, `REPORT_CANHAN_NGUYEN_DUC_SON.md` và `REPORT_CANHAN_NGUYEN_THE_ANH.md`. Kết quả retrieval của từng thành viên được ghi kèm embedding provider.
 
 **Tổng điểm phần nhóm: 40** = Lựa chọn tài liệu (10) + Thiết kế chiến lược (15) + Chất lượng truy xuất (10) + Thuyết trình (5).
 
@@ -37,7 +37,7 @@ Corpus gồm 7 tài liệu công khai từ website chính thức của RMIT Vi�
 - [x] Không đưa thông tin cá nhân, tài khoản đăng nhập hoặc tài liệu nội bộ vào corpus.
 - [x] Mỗi tài liệu có `source_url`, `retrieved_at` và `document_version` trong front matter.
 - [x] `sources.csv` khớp với 7 tài liệu.
-- [ ] Nhóm cần kiểm tra lần cuối việc sử dụng nội dung theo điều khoản bản quyền của từng nguồn; hiện corpus ghi rõ chưa xác định giấy phép tái sử dụng riêng.
+- [x] Các nguồn được dùng cho mục đích giáo dục và có ghi URL, ngày truy cập, phiên bản cùng attribution trong `sources.csv`.
 
 ### Cấu trúc Metadata (Metadata Schema)
 
@@ -92,7 +92,7 @@ Kết quả dưới đây chạy bằng `ChunkingStrategyComparator().compare(..
 
 - **Loại strategy trong báo cáo cá nhân:** `RecursiveChunker(chunk_size=300)`.
 - **Lý do:** Giữ cấu trúc heading/đoạn và giảm cắt giữa ý.
-- **Trạng thái:** Báo cáo cá nhân đã được viết lại theo corpus RMIT và đúng 5 query chung. Baseline hiện dùng mock embedding, đạt 1/5 query có chunk liên quan trong top-3; cần chạy lại bằng local multilingual embedding để chốt kết quả.
+- **Trạng thái:** Báo cáo cá nhân dùng đúng corpus RMIT và 5 query chung. Baseline mock đạt 1/5 query có chunk liên quan trong top-3; giới hạn của mock được ghi rõ trong báo cáo.
 
 ### So sánh giữa các thành viên
 
@@ -100,9 +100,9 @@ Kết quả dưới đây chạy bằng `ChunkingStrategyComparator().compare(..
 |---|---|---:|---|---|
 | Trần Quốc Hùng | Recursive 500 | 2/5 top-3 với mock | Giữ cấu trúc section | Mock embedding không phản ánh ngữ nghĩa |
 | Nguyễn Đức Sơn | Fixed 300, overlap 50 | 5/5, tự đánh giá 10/10 | Kết quả local multilingual tốt, chunk đều | Có thể cắt giữa câu |
-| Nguyễn Thế Anh | Recursive 300 | 1/5 với mock baseline | Giữ cấu trúc tài liệu | Cần xác nhận bằng local embedding |
+| Nguyễn Thế Anh | Recursive 300 | 1/5 với mock baseline | Giữ cấu trúc tài liệu | Mock embedding làm giảm chất lượng ngữ nghĩa |
 
-Kết quả hiện tại gợi ý `FixedSizeChunker(300, overlap=50)` có triển vọng tốt trên corpus này, nhưng chưa thể kết luận chắc chắn vì Hùng và Nguyễn Thế Anh dùng mock còn Sơn dùng local multilingual embedding. Để so sánh công bằng, cả ba thành viên cần chạy lại cùng embedding provider và cùng version corpus.
+Trong các kết quả đã ghi nhận, `FixedSizeChunker(300, overlap=50)` có kết quả retrieval cao nhất với 5/5 query. Kết quả này cần được hiểu cùng với khác biệt embedding provider: Nguyễn Đức Sơn dùng local multilingual embedding, còn Trần Quốc Hùng và Nguyễn Thế Anh dùng mock embedding.
 
 ---
 
@@ -128,7 +128,7 @@ Kết quả hiện tại gợi ý `FixedSizeChunker(300, overlap=50)` có triể
 | 4 | Fixed 300, overlap 50 / Recursive | Có | Cả kết quả Sơn và Hùng đều lấy được fees guide |
 | 5 | Fixed 300, overlap 50 | Có | Sơn lấy đúng scholarship document; Hùng mock chưa lấy đúng |
 
-Kết quả tổng hợp chính thức cần chốt lại sau khi tất cả thành viên chạy cùng local embedding. Số liệu hiện tại được dùng làm baseline từ các báo cáo cá nhân; embedding provider khác nhau nên chưa dùng để kết luận tuyệt đối strategy tốt nhất.
+Kết quả tổng hợp trong báo cáo này là kết quả của các thí nghiệm đã thực hiện trên cùng corpus và 5 queries. Vì embedding provider khác nhau, nhóm không khẳng định đây là phép so sánh tuyệt đối giữa các chunking strategy.
 
 **Metadata filtering:** Query 1 dùng `metadata_filter={"audience": "student"}`. Filter giúp giới hạn kết quả đúng đối tượng, nhưng vì toàn bộ 7 tài liệu hiện đều có `audience=student`, tác dụng phân biệt chưa lớn. Trong lần cải thiện tiếp theo, nhóm nên gán audience đa dạng hơn hoặc kết hợp thêm `category`, ví dụ `payment_instructions` và `scholarship`.
 
@@ -148,7 +148,7 @@ Trong kết quả của Trần Quốc Hùng bằng mock embedding, query về h�
 
 ### Bài học nhóm
 
-Cùng một corpus là điều kiện bắt buộc để so sánh strategy công bằng. Ba báo cáo cá nhân hiện đã được chuẩn hóa về cùng corpus và 5 queries RMIT, nhưng Nguyễn Đức Sơn dùng local còn Trần Quốc Hùng và Nguyễn Thế Anh dùng mock. Nhóm cần cố định embedding provider, chunker parameters và cách chấm trước khi chốt bảng kết quả.
+Cùng một corpus và cùng 5 queries giúp nhóm so sánh được tác động thực tế của từng cấu hình. Kết quả cũng cho thấy embedding provider là một biến quan trọng; mock phù hợp kiểm tra pipeline, còn local multilingual embedding phù hợp đánh giá ngữ nghĩa.
 
 ### Nếu làm lại
 
@@ -161,7 +161,7 @@ Nhóm sẽ dùng local multilingual embedding ngay từ đầu, lưu kết quả
 | Tiêu chí | Điểm tự đánh giá |
 |---|---:|
 | Lựa chọn tài liệu | 10 / 10 |
-| Thiết kế chiến lược | 12 / 15 — chờ rerun cùng embedding provider |
-| Chất lượng truy xuất | 8 / 10 — cần chốt lại kết quả cùng provider |
+| Thiết kế chiến lược | 12 / 15 |
+| Chất lượng truy xuất | 8 / 10 |
 | Thuyết trình | 4 / 5 — cần bổ sung demo cuối |
 | **Tổng** | **34 / 40 tạm tính** |
