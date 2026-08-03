@@ -4,19 +4,34 @@ from .store import EmbeddingStore
 
 
 class KnowledgeBaseAgent:
-    """
-    An agent that answers questions using a vector knowledge base.
+    def __init__(
+        self,
+        store: EmbeddingStore,
+        llm_fn: Callable[[str], str],
+    ) -> None:
+        self.store = store
+        self.llm_fn = llm_fn
 
-    Retrieval-augmented generation (RAG) pattern:
-        1. Retrieve top-k relevant chunks from the store.
-        2. Build a prompt with the chunks as context.
-        3. Call the LLM to generate an answer.
-    """
+    def answer(
+        self,
+        question: str,
+        top_k: int = 3,
+    ) -> str:
+        results = self.store.search(question, top_k=top_k)
 
-    def __init__(self, store: EmbeddingStore, llm_fn: Callable[[str], str]) -> None:
-        # TODO: store references to store and llm_fn
-        pass
+        context = "\n\n".join(
+            f"[Chunk {i}]\n{item['content']}"
+            for i, item in enumerate(results, start=1)
+        )
 
-    def answer(self, question: str, top_k: int = 3) -> str:
-        # TODO: retrieve chunks, build prompt, call llm_fn
-        raise NotImplementedError("Implement KnowledgeBaseAgent.answer")
+        prompt = (
+            "You are a knowledge-base assistant. "
+            "Answer only from the provided context. "
+            "If the context is insufficient, say that the information "
+            "is not available.\n\n"
+            f"Context:\n{context or '[No relevant context found]'}\n\n"
+            f"Question: {question}\n"
+            "Answer:"
+        )
+
+        return self.llm_fn(prompt)
