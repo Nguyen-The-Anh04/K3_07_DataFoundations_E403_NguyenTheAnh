@@ -1,6 +1,7 @@
 # Báo Cáo Cá Nhân — Lab 7: Embedding & Vector Store
 
 **Họ tên:** Trần Quốc Hùng
+**Mã sinh viên:** 2A202601683
 **Nhóm:** NguyenTheAnh
 **Ngày:** 03/08/2026
 

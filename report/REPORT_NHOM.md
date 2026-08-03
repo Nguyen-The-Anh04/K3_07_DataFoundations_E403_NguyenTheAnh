@@ -1,7 +1,7 @@
 # Báo Cáo Nhóm — Lab 7: Embedding & Vector Store
 
 **Nhóm:** NguyenTheAnh  
-**Thành viên:** Trần Quốc Hùng, Nguyễn Đức Sơn, Nguyễn Thế Anh  
+**Thành viên:** Trần Quốc Hùng (2A202601683), Nguyễn Thế Anh (2A202601791), Nguyễn Đức Sơn (2A202601485)  
 **Ngày:** 03/08/2026
 
 > Nhóm sử dụng chung corpus RMIT trong `data/k3_tuition/` và cùng 5 benchmark queries trong `data/k3_tuition/benchmark_queries.csv`. Báo cáo này tổng hợp kết quả strategy/retrieval do các thành viên cung cấp; branch cá nhân này chỉ nộp báo cáo cá nhân của Trần Quốc Hùng và báo cáo nhóm.
