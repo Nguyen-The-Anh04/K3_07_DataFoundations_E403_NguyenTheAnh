@@ -1,7 +1,7 @@
 # Báo Cáo Cá Nhân — Lab 7: Embedding & Vector Store
 
 **Họ tên:** Trần Quốc Hùng
-**Nhóm:** [Bổ sung tên nhóm]
+**Nhóm:** NguyenTheAnh
 **Ngày:** 03/08/2026
 
 > Phần retrieval trong báo cáo này dùng corpus chung RMIT về quy định học phí. Kết quả benchmark hiện tại được chạy bằng mock embedding vì local multilingual embedder chưa khởi tạo xong trong môi trường; mock chỉ dùng để kiểm tra pipeline, không dùng làm kết luận cuối cùng về chất lượng ngữ nghĩa.
