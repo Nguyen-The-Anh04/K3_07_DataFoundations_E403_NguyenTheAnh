@@ -1,0 +1,6 @@
+id,query,gold_answer,source_document_chunk,metadata_filter
+1,"Học phí tại RMIT Việt Nam được tính và thanh toán như thế nào?","Học phí được thanh toán theo từng học kỳ và dựa trên số môn sinh viên đăng ký trong học kỳ.","rmit_tuition_2026 / mục “Nguyên tắc tính và thanh toán”","{""audience"":""student""}"
+2,"Hạn thanh toán học phí Học kỳ 2 năm 2026 là ngày nào?","Ngày 17/07/2026.","rmit_academic_calendar_2026 / mục “Học kỳ 2”",
+3,"Khi chuyển khoản học phí, nội dung chuyển khoản cần có những thông tin gì?","Họ tên sinh viên, mã số sinh viên (hoặc ngày tháng năm sinh nếu chưa có mã số), và nội dung khoản thanh toán.","rmit_payment_methods / mục “Nội dung chuyển khoản”",
+4,"Sinh viên học kỳ thứ hai trở đi phải rút môn trước thời điểm nào để có thể được hoàn toàn bộ học phí trả trước của học kỳ?","Trước khi kết thúc ngày làm việc Thứ Sáu của tuần thứ tư trong học kỳ, theo điều kiện của Tài liệu Hướng dẫn Thông tin học phí & Các phí phụ thu 2026.","rmit_fees_guide_2026 / mục “Hoàn trả học phí”",
+5,"Điều kiện GPA tối thiểu của học bổng thành tích dành cho sinh viên hiện đang học tại RMIT năm 2026 là bao nhiêu?","GPA tích lũy từ 3,4/4,0 trở lên; ứng viên cũng phải hoàn tất ít nhất 96 tín chỉ.","rmit_current_student_scholarship_2026 / mục “Điều kiện chính”",
