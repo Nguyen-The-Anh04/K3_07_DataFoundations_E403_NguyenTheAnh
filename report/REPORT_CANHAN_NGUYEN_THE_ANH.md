@@ -1,9 +1,9 @@
-# Bản nháp báo cáo cá nhân — Nguyễn Thế Anh
+# Báo cáo cá nhân — Nguyễn Thế Anh
 
 **Nhóm:** NguyenTheAnh  
 **Ngày:** 03/08/2026
 
-> Bản nháp này đã chuyển benchmark về corpus chung RMIT trong `data/k3_tuition/`. Các score bên dưới là baseline bằng mock embedding để hoàn thiện cấu trúc báo cáo; cần Nguyễn Thế Anh xác nhận/chạy lại bằng local multilingual embedding trước khi nộp.
+> Báo cáo này sử dụng corpus chung RMIT trong `data/k3_tuition/`. Các score bên dưới là baseline bằng mock embedding; cần xác nhận/chạy lại bằng local multilingual embedding trước khi chốt kết quả retrieval.
 
 ## 1. Khởi động
 

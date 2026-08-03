@@ -4,7 +4,7 @@
 **Thành viên:** Trần Quốc Hùng, Nguyễn Đức Sơn, Nguyễn Thế Anh  
 **Ngày:** 03/08/2026
 
-> Nhóm sử dụng chung corpus RMIT trong `data/k3_tuition/` và cùng 5 benchmark queries trong `data/k3_tuition/benchmark_queries.csv`. Mỗi thành viên thử một strategy riêng. Kết quả của Nguyễn Thế Anh trong báo cáo cá nhân được thực hiện trên corpus/query HUST cũ, vì vậy chưa được dùng để chấm so sánh RMIT và cần chạy lại trước khi nộp bản cuối.
+> Nhóm sử dụng chung corpus RMIT trong `data/k3_tuition/` và cùng 5 benchmark queries trong `data/k3_tuition/benchmark_queries.csv`. Các báo cáo cá nhân được đối chiếu gồm `REPORT_CANHAN.md` của Trần Quốc Hùng, `REPORT_CANHAN_NGUYEN_DUC_SON.md` và `REPORT_CANHAN_NGUYEN_THE_ANH.md`. Kết quả retrieval của từng thành viên được ghi kèm embedding provider để tránh diễn giải sai khác biệt giữa các thí nghiệm.
 
 **Tổng điểm phần nhóm: 40** = Lựa chọn tài liệu (10) + Thiết kế chiến lược (15) + Chất lượng truy xuất (10) + Thuyết trình (5).
 
@@ -92,7 +92,7 @@ Kết quả dưới đây chạy bằng `ChunkingStrategyComparator().compare(..
 
 - **Loại strategy trong báo cáo cá nhân:** `RecursiveChunker(chunk_size=300)`.
 - **Lý do:** Giữ cấu trúc heading/đoạn và giảm cắt giữa ý.
-- **Trạng thái:** Báo cáo cá nhân hiện chạy trên corpus HUST cũ và các query thư viện/ký túc xá, không phải corpus RMIT chung. Cần chạy lại đúng 5 query RMIT trước khi dùng kết quả để so sánh.
+- **Trạng thái:** Báo cáo cá nhân đã được viết lại theo corpus RMIT và đúng 5 query chung. Baseline hiện dùng mock embedding, đạt 1/5 query có chunk liên quan trong top-3; cần chạy lại bằng local multilingual embedding để chốt kết quả.
 
 ### So sánh giữa các thành viên
 
@@ -100,9 +100,9 @@ Kết quả dưới đây chạy bằng `ChunkingStrategyComparator().compare(..
 |---|---|---:|---|---|
 | Trần Quốc Hùng | Recursive 500 | 2/5 top-3 với mock | Giữ cấu trúc section | Mock embedding không phản ánh ngữ nghĩa |
 | Nguyễn Đức Sơn | Fixed 300, overlap 50 | 5/5, tự đánh giá 10/10 | Kết quả local multilingual tốt, chunk đều | Có thể cắt giữa câu |
-| Nguyễn Thế Anh | Recursive 300 | Chưa thể so sánh | Giữ cấu trúc tài liệu | Đã dùng corpus/query HUST khác; cần rerun |
+| Nguyễn Thế Anh | Recursive 300 | 1/5 với mock baseline | Giữ cấu trúc tài liệu | Cần xác nhận bằng local embedding |
 
-Kết quả hiện tại gợi ý `FixedSizeChunker(300, overlap=50)` có triển vọng tốt trên corpus này, nhưng chưa thể kết luận chắc chắn vì Hùng dùng mock còn Sơn dùng local multilingual embedding. Để so sánh công bằng, cả ba thành viên cần chạy lại cùng embedding provider và cùng version corpus.
+Kết quả hiện tại gợi ý `FixedSizeChunker(300, overlap=50)` có triển vọng tốt trên corpus này, nhưng chưa thể kết luận chắc chắn vì Hùng và Nguyễn Thế Anh dùng mock còn Sơn dùng local multilingual embedding. Để so sánh công bằng, cả ba thành viên cần chạy lại cùng embedding provider và cùng version corpus.
 
 ---
 
@@ -128,7 +128,7 @@ Kết quả hiện tại gợi ý `FixedSizeChunker(300, overlap=50)` có triể
 | 4 | Fixed 300, overlap 50 / Recursive | Có | Cả kết quả Sơn và Hùng đều lấy được fees guide |
 | 5 | Fixed 300, overlap 50 | Có | Sơn lấy đúng scholarship document; Hùng mock chưa lấy đúng |
 
-Kết quả tổng hợp chính thức cần chốt lại sau khi tất cả thành viên chạy cùng local embedding. Số liệu hiện tại chỉ dùng làm bản nháp vì embedding provider khác nhau.
+Kết quả tổng hợp chính thức cần chốt lại sau khi tất cả thành viên chạy cùng local embedding. Số liệu hiện tại được dùng làm baseline từ các báo cáo cá nhân; embedding provider khác nhau nên chưa dùng để kết luận tuyệt đối strategy tốt nhất.
 
 **Metadata filtering:** Query 1 dùng `metadata_filter={"audience": "student"}`. Filter giúp giới hạn kết quả đúng đối tượng, nhưng vì toàn bộ 7 tài liệu hiện đều có `audience=student`, tác dụng phân biệt chưa lớn. Trong lần cải thiện tiếp theo, nhóm nên gán audience đa dạng hơn hoặc kết hợp thêm `category`, ví dụ `payment_instructions` và `scholarship`.
 
@@ -148,7 +148,7 @@ Trong kết quả của Trần Quốc Hùng bằng mock embedding, query về h�
 
 ### Bài học nhóm
 
-Cùng một corpus là điều kiện bắt buộc để so sánh strategy công bằng. Kết quả của Nguyễn Thế Anh trên corpus HUST cũ không thể dùng chung với benchmark RMIT; thành viên đó cần chạy lại đúng corpus và 5 queries RMIT. Nhóm cũng cần cố định embedding provider, chunker parameters và cách chấm trước khi so sánh.
+Cùng một corpus là điều kiện bắt buộc để so sánh strategy công bằng. Ba báo cáo cá nhân hiện đã được chuẩn hóa về cùng corpus và 5 queries RMIT, nhưng Nguyễn Đức Sơn dùng local còn Trần Quốc Hùng và Nguyễn Thế Anh dùng mock. Nhóm cần cố định embedding provider, chunker parameters và cách chấm trước khi chốt bảng kết quả.
 
 ### Nếu làm lại
 
@@ -165,4 +165,3 @@ Nhóm sẽ dùng local multilingual embedding ngay từ đầu, lưu kết quả
 | Chất lượng truy xuất | 8 / 10 — cần chốt lại kết quả cùng provider |
 | Thuyết trình | 4 / 5 — cần bổ sung demo cuối |
 | **Tổng** | **34 / 40 tạm tính** |
-

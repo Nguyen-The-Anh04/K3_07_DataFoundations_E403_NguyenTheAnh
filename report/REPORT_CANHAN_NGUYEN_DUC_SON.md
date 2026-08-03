@@ -1,10 +1,10 @@
-# Bản nháp báo cáo cá nhân — Nguyễn Đức Sơn
+# Báo cáo cá nhân — Nguyễn Đức Sơn
 
 **Mã sinh viên:** 2A202601485  
 **Nhóm:** NguyenTheAnh  
 **Ngày:** 03/08/2026
 
-> Bản nháp này sử dụng corpus chung RMIT trong `data/k3_tuition/` và 5 benchmark queries chung. Các kết quả retrieval được thành viên cung cấp với `FixedSizeChunker(chunk_size=300, overlap=50)` và multilingual embedding `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`.
+> Báo cáo này sử dụng corpus chung RMIT trong `data/k3_tuition/` và 5 benchmark queries chung. Các kết quả retrieval được thành viên cung cấp với `FixedSizeChunker(chunk_size=300, overlap=50)` và multilingual embedding `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`.
 
 ## 1. Khởi động
 
